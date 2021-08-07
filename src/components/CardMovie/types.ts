@@ -3,4 +3,5 @@ export interface CardMovieProps {
   percent: number;
   image: string;
   releaseDate: string;
+  cdn: string;
 }

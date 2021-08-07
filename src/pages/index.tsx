@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GetStaticProps } from "next";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import CardMovie from "components/CardMovie";
@@ -13,7 +14,11 @@ interface MovieState {
   poster_path: string;
 }
 
-export default function Home(): JSX.Element {
+interface MovieProps {
+  cdn: string;
+}
+
+export default function Home({ cdn }: MovieProps): JSX.Element {
   const [movies, setMovies] = useState<Array<MovieState>>([]);
   useEffect(() => {
     (async () => {
@@ -38,6 +43,7 @@ export default function Home(): JSX.Element {
                 image={movie.poster_path}
                 percent={movie.vote_average}
                 releaseDate={movie.release_date}
+                cdn={cdn}
               />
             </Grid>
           </a>
@@ -46,3 +52,11 @@ export default function Home(): JSX.Element {
     </Grid>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      cdn: process.env.NEXTJS_CDN,
+    },
+  };
+};

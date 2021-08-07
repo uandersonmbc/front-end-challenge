@@ -18,6 +18,10 @@ export function getPopularMovies() {
   });
 }
 
-export function getMovie(id: number) {
-  return axios.get(`${path}/${id}`);
+export function getMovie(id: string | string[] | undefined) {
+  return axios.get(`${path}/${id}`, {
+    params: {
+      api_key: process.env.NEXTJS_API_KEY,
+    },
+  });
 }
