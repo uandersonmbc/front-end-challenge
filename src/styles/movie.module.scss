@@ -21,35 +21,38 @@
   justify-content: center;
   background-color: transparent;
   color: #fff;
-}
 
-.header {
-  display: flex;
-  width: 70%;
-  margin-top: 20px;
-}
+  .content {
+    width: 70%;
+  }
 
-.poster{
-  border-radius: 5px;
-}
+  .header {
+    display: flex;
+    margin-top: 20px;
+  }
 
-.details {
-  padding: 20px;
-}
+  .poster {
+    border-radius: 5px;
+    width: 300px;
+  }
 
-.rating {
-  display: flex;
-  align-items: center;
-}
-.percent {
-  width: 50px;
-  height: 50px;
-}
+  .details {
+    padding: 20px;
+  }
 
-.text {
-  margin-left: 20px;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #fff;
-}
+  .rating {
+    display: flex;
+    align-items: center;
+  }
+  .percent {
+    width: 50px;
+    height: 50px;
+  }
 
+  .text {
+    margin-left: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+  }
+}
