@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import CardMovie from "./CardMovie";
+import { Card } from "components";
 
 describe("CardMovie", () => {
   it("renders correctly", () => {
@@ -9,10 +9,11 @@ describe("CardMovie", () => {
       image: "/image.jpg",
       releaseDate: "2018-01-01",
       percent: 7.8,
+      cdn: "",
     };
     render(
       <div>
-        <CardMovie {...props} />
+        <Card {...props} />
       </div>
     );
 

@@ -1,68 +1,27 @@
 import Head from "next/head";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
 
-import { getMovie } from "services/movies";
-import { urlObjectKeys } from "next/dist/next-server/lib/utils";
+import { getKeywords, getDetailsMovie } from "services/movies";
 
-interface ProductionCompany {
-  id: number;
-  logo_path: string;
-  name: string;
-  origin_country: string;
-}
+import { MovieProps } from "types/movie";
 
-interface ProductionCountry {
-  iso_3166_1: string;
-  name: string;
-}
+import styles from "styles/movie.module.scss";
 
-interface SpokenLanguage {
-  english_name: string;
-  iso_639_1: string;
-  name: string;
-}
-interface Movie {
-  adult: boolean;
-  backdrop_path: string;
-  belongs_to_collection: string;
-  budget: number;
-  genres: Array<{ id: number; name: string }>;
-  homepage: string;
-  id: number;
-  imdb_id: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  production_companies: Array<ProductionCompany>;
-  production_countries: Array<ProductionCountry>;
-  release_date: string;
-  revenue: number;
-  runtime: number;
-  spoken_languages: Array<SpokenLanguage>;
-  status: string;
-  tagline: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
-interface MovieProps {
-  movie: Movie;
-  cdn: string;
-}
-
-export default function Movie({ movie, cdn }: MovieProps): JSX.Element {
-  const keywords = movie.genres.flatMap((g) => g.name).join(",");
+export default function Movie({
+  movie,
+  cdn,
+  keywords,
+}: MovieProps): JSX.Element {
+  const stringKeywordds = keywords.flatMap((g) => g.name).join(",");
   return (
     <>
       <Head>
         <title>{movie.title}</title>
 
         <meta name="description" content={movie.overview} />
-        <meta name="keywords" content={keywords} />
+        <meta name="keywords" content={stringKeywordds} />
 
         <meta property="og:image" content={cdn + "/w500" + movie.poster_path} />
         <meta
@@ -74,7 +33,10 @@ export default function Movie({ movie, cdn }: MovieProps): JSX.Element {
         <meta property="og:description" content={movie.overview} />
         <meta property="og:site_name" content={movie.title} />
 
-        <meta property="twitter:image" content={movie.backdrop_path} />
+        <meta
+          property="twitter:image"
+          content={cdn + "/w500" + movie.backdrop_path}
+        />
         <meta property="twitter:image:width" content="780" />
         <meta property="twitter:image:height" content="439" />
         <meta property="twitter:card" content="summary" />
@@ -82,15 +44,56 @@ export default function Movie({ movie, cdn }: MovieProps): JSX.Element {
         <meta property="twitter:title" content={movie.title} />
         <meta property="twitter:description" content={movie.overview} />
       </Head>
+
       <div
+        className={styles.background}
         style={{
           height: "100vh",
           backgroundImage: `url(${
             cdn + "/w1920_and_h800_multi_faces" + movie.backdrop_path
           })`,
         }}
-      >
-        <h1>Movie {movie.title}</h1>
+      />
+      <div className={styles.blur} />
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <img
+            src={cdn + "/w300" + movie.poster_path}
+            className={styles.poster}
+          />
+          <div className={styles.details}>
+            <h1>
+              {movie.title} <span>(2021)</span>
+            </h1>
+            <p>
+              07-07-2021 (PT) Ação, Aventura, Thriller, Ficção científica 2h 13m
+            </p>
+            <div className={styles.rating}>
+              <div className={styles.percent}>
+                <CircularProgressbar
+                  value={movie.vote_average * 10}
+                  text={movie.vote_average.toFixed(1)}
+                  background
+                  backgroundPadding={6}
+                  styles={buildStyles({
+                    textSize: "25px",
+                    backgroundColor: "#3e98c7",
+                    textColor: "#fff",
+                    pathColor: "#fff",
+                    trailColor: "transparent",
+                  })}
+                />
+              </div>
+              <span className={styles.text}>
+                Classificação Geral dos Utilizadores
+              </span>
+            </div>
+            <h3>Sinopse</h3>
+            <p>{movie.overview}</p>
+          </div>
+        </div>
+
+        {/* <div className={styles.seriesCast}>People</div> */}
       </div>
     </>
   );
@@ -110,10 +113,12 @@ export const getStaticProps: GetStaticProps = async (
 
   if (id) {
     try {
-      const { data } = await getMovie(id);
+      const movie = await getDetailsMovie(id);
+      const keywords = await getKeywords(id);
       return {
         props: {
-          movie: data,
+          movie: movie.data,
+          keywords: keywords.data.keywords,
           cdn: process.env.NEXTJS_CDN,
         },
         revalidate: 3600,

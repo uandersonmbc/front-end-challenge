@@ -3,7 +3,6 @@
   width: 220px;
   overflow: hidden;
   border-radius: 5px;
-  margin: 5px;
   box-shadow: 0px 0px 5px 0 #ccc;
 }
 
@@ -15,17 +14,6 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 35px;
-  height: 35px;
-  background-color: #fff;
-  border: 3px solid #20c574;
-  color: #606060;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 900;
-  text-align: center;
-  line-height: 28px;
-  vertical-align: middle;
 }
 
 .container {

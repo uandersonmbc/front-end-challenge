@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+
 import { GetStaticProps } from "next";
 import Link from "next/link";
-import Grid from "@material-ui/core/Grid";
-import CardMovie from "components/CardMovie";
+
+import { Card, Header } from "components";
 
 import axios from "services/api";
+
+import styles from "styles/home.module.scss";
 
 interface MovieState {
   id: number;
@@ -28,28 +31,29 @@ export default function Home({ cdn }: MovieProps): JSX.Element {
   }, []);
 
   return (
-    <Grid container justifyContent="center">
-      {movies.map((movie) => (
-        <Link
-          href={{
-            pathname: `/movie/${movie.id}`,
-          }}
-          key={movie.id}
-        >
-          <a>
-            <Grid>
-              <CardMovie
+    <div className={styles.container}>
+      <Header />
+      <div className={styles.grid}>
+        {movies.map((movie) => (
+          <Link
+            href={{
+              pathname: `/movie/${movie.id}`,
+            }}
+            key={movie.id}
+          >
+            <a>
+              <Card
                 title={movie.title}
                 image={movie.poster_path}
                 percent={movie.vote_average}
                 releaseDate={movie.release_date}
                 cdn={cdn}
               />
-            </Grid>
-          </a>
-        </Link>
-      ))}
-    </Grid>
+            </a>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
 
