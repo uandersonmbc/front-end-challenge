@@ -1,14 +1,12 @@
-import styles from "./style.module.css";
-
+import { memo } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
 import { formatDates } from "utils/helpers";
-
 import { CardMovieProps } from "./types";
-
 import config from "configs/global.json";
+import styles from "./styles.module.scss";
 
-export default function CardMovie({
+export default memo(function CardMovie({
   title,
   releaseDate,
   percent,
@@ -30,9 +28,9 @@ export default function CardMovie({
             backgroundPadding={6}
             styles={buildStyles({
               textSize: "25px",
-              backgroundColor: "#3e98c7",
+              backgroundColor: "#081c22",
               textColor: "#fff",
-              pathColor: "#fff",
+              pathColor: percent > 7 ? "#20c574" : "#d0d331",
               trailColor: "transparent",
             })}
           />
@@ -47,4 +45,4 @@ export default function CardMovie({
       </div>
     </div>
   );
-}
+});

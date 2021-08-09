@@ -1,25 +1,89 @@
 import Head from "next/head";
+import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
+import YouTube from "react-youtube";
 
-import { getKeywords, getDetailsMovie } from "services/movies";
-import { MovieProps } from "types/movie";
+import {
+  getKeywordsMovie,
+  getDetailsMovie,
+  getVideosMovie,
+} from "services/movies";
+import axios from "services/api";
+import { MovieProps, Video, Person } from "types/movie";
 import styles from "styles/movie.module.scss";
 import { formatDates, convertMinToHrMn } from "utils/helpers";
+import { CardPerson } from "components";
 
 export default function Movie({
   movie,
   cdn,
   keywords,
 }: MovieProps): JSX.Element {
+  const [videos, setVideos] = useState<Array<Video>>([
+    {
+      iso_639_1: "pt",
+      iso_3166_1: "BR",
+      name: "Viúva Negra | Marvel Studios | Trailer Oficial Dublado",
+      key: "uNAxHLp7wv8",
+      site: "YouTube",
+      size: 1080,
+      type: "Trailer",
+      official: true,
+      published_at: "2021-04-03T16:00:15.000Z",
+      id: "606897b24a4bfc004097bcc6",
+    },
+    {
+      iso_639_1: "pt",
+      iso_3166_1: "BR",
+      name: "Viúva Negra | Marvel Studios | Trailer Oficial Legendado",
+      key: "Gm3o0bfGP3g",
+      site: "YouTube",
+      size: 1080,
+      type: "Trailer",
+      official: true,
+      published_at: "2021-04-03T16:00:11.000Z",
+      id: "606897bcf056d5002960fd2c",
+    },
+  ]);
+  const [selectedVideo, setSelectedVideo] = useState<Video>();
+  const [cast, setCast] = useState<Array<Person>>([]);
+  // const
+
   const stringKeywordds = keywords.flatMap((g) => g.name).join(",");
-  const genres = movie.genres.map((g) => g.name).join(",");
+  const genres = movie.genres.map((g) => g.name).join(", ");
   const year = movie.release_date.split("-")[0];
   const runtime = convertMinToHrMn(movie.runtime);
   const releaseDate = formatDates(
     new Date(movie.release_date),
     movie.original_language
   );
+
+  async function getDetails() {
+    try {
+      const { data } = await axios.get("/api/details", {
+        params: {
+          id: movie.id,
+          // laguage: movie.original_language,
+        },
+      });
+      setCast(data.credits.cast);
+      // setVideos(data.videos);
+    } catch (error) {}
+  }
+
+  function onVideoClick(video: Video) {
+    setSelectedVideo(video);
+  }
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
+  useEffect(() => {
+    videos.length && setSelectedVideo(videos[0]);
+  }, [videos]);
+
   return (
     <>
       <Head>
@@ -72,7 +136,7 @@ export default function Movie({
                 {movie.title} <span>({year})</span>
               </h1>
               <p>
-                {releaseDate} - {genres} - {runtime}
+                {releaseDate} • {genres} • {runtime}
               </p>
               <div className={styles.rating}>
                 <div className={styles.percent}>
@@ -83,9 +147,9 @@ export default function Movie({
                     backgroundPadding={6}
                     styles={buildStyles({
                       textSize: "25px",
-                      backgroundColor: "#3e98c7",
+                      backgroundColor: "#081c22",
                       textColor: "#fff",
-                      pathColor: "#fff",
+                      pathColor: movie.vote_average > 7 ? "#20c574" : "#d0d331",
                       trailColor: "transparent",
                     })}
                   />
@@ -101,6 +165,29 @@ export default function Movie({
 
           <div className={styles.seriesCast}>
             <h3>Elenco</h3>
+            <div className={styles.cast}>
+              {cast.map((person) => (
+                <CardPerson key={person.id} data={person} cdn={cdn} />
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.videos}>
+            <h3>Videos • {selectedVideo?.name}</h3>
+            <div>
+              <YouTube videoId={selectedVideo?.key} opts={{ width: "100%" }} />
+              <div className={styles.cast}>
+                {videos.map((video) => (
+                  <div key={video.id} onClick={() => onVideoClick(video)}>
+                    {video.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.recommendations}>
+            <h3>Recomendações</h3>
           </div>
         </div>
       </div>
@@ -123,8 +210,7 @@ export const getStaticProps: GetStaticProps = async ({
   if (id) {
     try {
       const movie = await getDetailsMovie(id, language);
-      const keywords = await getKeywords(id, language);
-      console.log("Movie", movie);
+      const keywords = await getKeywordsMovie(id, language);
       return {
         props: {
           movie: movie.data,

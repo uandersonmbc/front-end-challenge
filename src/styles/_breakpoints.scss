@@ -3,13 +3,13 @@ $media-md: 768px;
 $media-lg: 1024px;
 
 @mixin media-sm {
-  @media (min-width: $media-sm) {
+  @media screen and (min-width: 0) and (max-width: $media-sm) {
     @content;
   }
 }
 
 @mixin media-md {
-  @media (min-width: $media-md) {
+  @media screen and (min-width: $media-md) and (max-width: $media-lg) {
     @content;
   }
 }

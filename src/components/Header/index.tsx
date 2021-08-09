@@ -6,9 +6,6 @@ export default function Header(): JSX.Element {
   return (
     <div className={styles.container}>
       <span>Brand</span>
-      <div>
-        <input type="text" placeholder="Search..." />
-      </div>
       <nav className={styles.navbar}>
         <ul>
           <li>

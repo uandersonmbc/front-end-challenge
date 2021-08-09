@@ -3,17 +3,20 @@
 .container {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  background-color: #032541;
+  color: #fff;
 
   height: 100px;
   width: 100vw;
 
   padding: 20px;
 
-  @include breakpoints.media-md {
-    flex-direction: row;
+  @include breakpoints.media-sm {
+    flex-direction: column;
   }
 
   .navbar {

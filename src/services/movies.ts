@@ -1,7 +1,7 @@
 import axios from "./api";
 
 const path = "/movie";
-const mainLanguage = "pt-BR";
+const mainLanguage = process.env.NEXTJS_LANGUAGE?.toString() || "pt-BR";
 
 export function getPopularMovies(language: string = mainLanguage) {
   return axios.get(`${path}/popular`, {
@@ -24,11 +24,67 @@ export function getDetailsMovie(
   });
 }
 
-export function getKeywords(
+export function getKeywordsMovie(
   id: string | string[],
   language: string = mainLanguage
 ) {
   return axios.get(`${path}/${id}/keywords`, {
+    params: {
+      api_key: process.env.NEXTJS_API_KEY,
+      language: language,
+    },
+  });
+}
+
+export function getSimilarMovies(
+  id: string | string[],
+  language: string = mainLanguage
+) {
+  return axios.get(`${path}/${id}/similar`, {
+    params: {
+      api_key: process.env.NEXTJS_API_KEY,
+      language: language,
+    },
+  });
+}
+
+export function getRecomendationsMovie(
+  id: string | string[],
+  language: string = mainLanguage
+) {
+  return axios.get(`${path}/${id}/recomendations`, {
+    params: {
+      api_key: process.env.NEXTJS_API_KEY,
+      language: language,
+    },
+  });
+}
+
+export function getCreditsMovie(
+  id: string | string[],
+  language: string = mainLanguage
+) {
+  return axios.get(`${path}/${id}/credits`, {
+    params: {
+      api_key: process.env.NEXTJS_API_KEY,
+      language: language,
+    },
+  });
+}
+
+export function getImagesMovie(id: string | string[]) {
+  return axios.get(`${path}/${id}/images`, {
+    params: {
+      api_key: process.env.NEXTJS_API_KEY,
+    },
+  });
+}
+
+export function getVideosMovie(
+  id: string | string[],
+  language: string = mainLanguage
+) {
+  return axios.get(`${path}/${id}/videos`, {
     params: {
       api_key: process.env.NEXTJS_API_KEY,
       language: language,
