@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data | {}>) => {
     const query = req.query;
     const language = query.language?.toString() || process.env.NEXTJS_LANGUAGE;
     const { data } = await getPopularMovies(language);
-    console.log(data);
+
     res.status(200).json(data);
   } catch (error) {
     res.status(400).json({});

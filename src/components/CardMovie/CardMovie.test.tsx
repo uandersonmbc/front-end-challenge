@@ -19,9 +19,7 @@ describe("CardMovie", () => {
 
     expect(screen.getByText(props.title)).toBeInTheDocument();
 
-    expect(
-      screen.getByText((props.percent * 10).toString())
-    ).toBeInTheDocument();
+    expect(screen.getByText(props.percent.toString())).toBeInTheDocument();
 
     const img = screen.getByRole("img");
     expect(img.getAttribute("src")).toMatch(props.image);
