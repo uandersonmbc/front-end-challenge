@@ -159,7 +159,7 @@ export default function Movie({
           </div>
 
           <div className={styles.recommendations}>
-            <h3>Recomendações</h3>
+            <h2>Recomendações</h2>
 
             <div className={styles.scrool}>
               {recommendations.map((recomendation) => (
