@@ -14,8 +14,8 @@ export default memo(function CardMovie({
   cdn,
 }: CardMovieProps) {
   return (
-    <div className={styles.root}>
-      <div className={styles.image}>
+    <div className={styles.container}>
+      <div className={styles.content}>
         <img src={cdn + config.wrapper + image} alt={title} />
         <div className={styles.percent}>
           <CircularProgressbar
@@ -33,7 +33,7 @@ export default memo(function CardMovie({
           />
         </div>
       </div>
-      <div className={styles.container}>
+      <div className={styles.details}>
         <span className={styles.title}>{title}</span>
         <br />
         <span className={styles.releaseDate}>
