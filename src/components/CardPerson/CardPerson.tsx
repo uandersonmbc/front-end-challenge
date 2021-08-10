@@ -12,7 +12,11 @@ export default function CardPerson({
 }): JSX.Element {
   return (
     <div className={styles.container}>
-      <img src={cdn + config.wrapper + data.profile_path} alt="" />
+      <div className={styles.profile}>
+        {data.profile_path && (
+          <img src={cdn + config.wrapper + data.profile_path} alt={data.name} />
+        )}
+      </div>
       <div className={styles.details}>
         <h3>{data.name}</h3>
         <p>{data.character}</p>
