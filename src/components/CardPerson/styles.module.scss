@@ -1,8 +1,15 @@
 .container {
   width: 220px;
   display: inline-grid;
-
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: black;
   img {
     width: 220px;
+    border-radius: 5px 5px 0 0;
+  }
+  .details {
+    padding: 10px;
   }
 }

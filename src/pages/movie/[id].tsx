@@ -20,32 +20,7 @@ export default function Movie({
   cdn,
   keywords,
 }: MovieProps): JSX.Element {
-  const [videos, setVideos] = useState<Array<Video>>([
-    {
-      iso_639_1: "pt",
-      iso_3166_1: "BR",
-      name: "Viúva Negra | Marvel Studios | Trailer Oficial Dublado",
-      key: "uNAxHLp7wv8",
-      site: "YouTube",
-      size: 1080,
-      type: "Trailer",
-      official: true,
-      published_at: "2021-04-03T16:00:15.000Z",
-      id: "606897b24a4bfc004097bcc6",
-    },
-    {
-      iso_639_1: "pt",
-      iso_3166_1: "BR",
-      name: "Viúva Negra | Marvel Studios | Trailer Oficial Legendado",
-      key: "Gm3o0bfGP3g",
-      site: "YouTube",
-      size: 1080,
-      type: "Trailer",
-      official: true,
-      published_at: "2021-04-03T16:00:11.000Z",
-      id: "606897bcf056d5002960fd2c",
-    },
-  ]);
+  const [videos, setVideos] = useState<Array<Video>>([]);
   const [selectedVideo, setSelectedVideo] = useState<Video>();
   const [cast, setCast] = useState<Array<Person>>([]);
   // const
@@ -68,7 +43,7 @@ export default function Movie({
         },
       });
       setCast(data.credits.cast);
-      // setVideos(data.videos);
+      setVideos(data.videos);
     } catch (error) {}
   }
 

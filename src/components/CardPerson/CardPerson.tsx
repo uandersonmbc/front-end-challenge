@@ -13,7 +13,7 @@ export default function CardPerson({
   return (
     <div className={styles.container}>
       <img src={cdn + config.wrapper + data.profile_path} alt="" />
-      <div>
+      <div className={styles.details}>
         <h3>{data.name}</h3>
         <p>{data.character}</p>
       </div>
