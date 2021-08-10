@@ -4,16 +4,12 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
 import YouTube from "react-youtube";
 
-import {
-  getKeywordsMovie,
-  getDetailsMovie,
-  getVideosMovie,
-} from "services/movies";
+import { getKeywordsMovie, getDetailsMovie } from "services/movies";
 import axios from "services/api";
-import { MovieProps, Video, Person } from "types/movie";
+import { MovieProps, Video, Person, Movie as MovieState } from "types/movie";
 import styles from "styles/movie.module.scss";
 import { formatDates, convertMinToHrMn } from "utils/helpers";
-import { CardPerson } from "components";
+import { CardPerson, CardRecommendation } from "components";
 
 export default function Movie({
   movie,
@@ -23,7 +19,7 @@ export default function Movie({
   const [videos, setVideos] = useState<Array<Video>>([]);
   const [selectedVideo, setSelectedVideo] = useState<Video>();
   const [cast, setCast] = useState<Array<Person>>([]);
-  // const
+  const [recommendations, setRecommendations] = useState<Array<MovieState>>([]);
 
   const stringKeywordds = keywords.flatMap((g) => g.name).join(",");
   const genres = movie.genres.map((g) => g.name).join(", ");
@@ -44,6 +40,7 @@ export default function Movie({
       });
       setCast(data.credits.cast);
       setVideos(data.videos);
+      setRecommendations(data.recommendations);
     } catch (error) {}
   }
 
@@ -110,7 +107,7 @@ export default function Movie({
               <h1>
                 {movie.title} <span>({year})</span>
               </h1>
-              <p>
+              <p className={styles.infos}>
                 {releaseDate} • {genres} • {runtime}
               </p>
               <div className={styles.rating}>
@@ -129,7 +126,7 @@ export default function Movie({
                     })}
                   />
                 </div>
-                <span className={styles.text}>
+                <span className={styles.averageText}>
                   Classificação Geral dos Utilizadores
                 </span>
               </div>
@@ -139,7 +136,7 @@ export default function Movie({
           </div>
 
           <div className={styles.seriesCast}>
-            <h3>Elenco</h3>
+            <h2>Elenco</h2>
             <div className={styles.cast}>
               {cast.map((person) => (
                 <CardPerson key={person.id} data={person} cdn={cdn} />
@@ -148,10 +145,10 @@ export default function Movie({
           </div>
 
           <div className={styles.videos}>
-            <h3>Videos • {selectedVideo?.name}</h3>
+            <h2>Videos • {selectedVideo?.name}</h2>
             <div>
               <YouTube videoId={selectedVideo?.key} opts={{ width: "100%" }} />
-              <div className={styles.cast}>
+              <div className={styles.video}>
                 {videos.map((video) => (
                   <div key={video.id} onClick={() => onVideoClick(video)}>
                     {video.name}
@@ -163,6 +160,16 @@ export default function Movie({
 
           <div className={styles.recommendations}>
             <h3>Recomendações</h3>
+
+            <div className={styles.scrool}>
+              {recommendations.map((recomendation) => (
+                <CardRecommendation
+                  key={recomendation.id}
+                  data={recomendation}
+                  cdn={cdn}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -26,28 +26,45 @@
   background-color: transparent;
   color: #fff;
   overflow: auto;
+  margin-bottom: 100px;
 
   .content {
-    width: 70%;
+    width: 80%;
   }
 
   .header {
     display: flex;
+    margin: 20px 0;
     @include breakpoints.media-sm {
       flex-direction: column;
     }
-    margin-top: 20px;
     .poster {
       border-radius: 5px;
       width: 250px;
       height: 400px;
+      @include breakpoints.media-sm {
+        width: 100%;
+        height: auto;
+      }
     }
 
     .details {
       padding: 20px;
+
+      .infos {
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 5px;
+        margin-left: 5px;
+      }
+      p {
+        font-size: 15px;
+        font-weight: bold;
+      }
     }
 
     .rating {
+      margin: 20px 0;
       display: flex;
       align-items: center;
     }
@@ -61,7 +78,7 @@
       }
     }
 
-    .text {
+    .averageText {
       margin-left: 20px;
       font-size: 1.5em;
       font-weight: bold;
@@ -71,7 +88,42 @@
 
   .seriesCast {
     width: 100%;
+    margin: 20px 0;
     .cast {
+      display: inline-flex;
+      width: 100%;
+      overflow: auto;
+    }
+  }
+
+  .videos {
+    height: auto;
+    margin: 20px 0;
+    h2 {
+      margin-bottom: 10px;
+    }
+    .video {
+      width: 100%;
+      color: black;
+
+      div {
+        background: #fff;
+        margin-top: 5px;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      div:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .recommendations {
+    width: 100%;
+    margin: 20px 0;
+    padding-bottom: 100px;
+    .scrool {
       display: inline-flex;
       width: 100%;
       overflow: auto;

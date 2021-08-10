@@ -52,7 +52,7 @@ export function getRecomendationsMovie(
   id: string | string[],
   language: string = mainLanguage
 ) {
-  return axios.get(`${path}/${id}/recomendations`, {
+  return axios.get(`${path}/${id}/recommendations`, {
     params: {
       api_key: process.env.NEXTJS_API_KEY,
       language: language,

@@ -17,10 +17,7 @@ export default memo(function CardMovie({
     <div className={styles.root}>
       <div className={styles.image}>
         <img src={cdn + config.wrapper + image} alt={title} />
-        <div
-          style={{ width: "40px", height: "40px" }}
-          className={styles.percent}
-        >
+        <div className={styles.percent}>
           <CircularProgressbar
             value={percent * 10}
             text={percent.toFixed(1)}
