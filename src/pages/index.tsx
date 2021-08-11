@@ -9,6 +9,7 @@ import axios from "services/api";
 
 import styles from "styles/home.module.scss";
 import Filter from "components/Filter/Filter";
+import Head from "next/head";
 
 interface MovieState {
   id: number;
@@ -24,17 +25,26 @@ interface MovieProps {
 
 export default function Home({ cdn }: MovieProps): JSX.Element {
   const [movies, setMovies] = useState<Array<MovieState>>([]);
+
+  async function fetchMovies() {
+    const { data } = await axios.get(`/api/movies`);
+    setMovies(data.results);
+  }
+
   useEffect(() => {
-    (async () => {
-      const { data } = await axios.get("/api/movies");
-      setMovies(data.results);
-    })();
+    fetchMovies();
   }, []);
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Movie | Popular</title>
+      </Head>
+
       <Header />
+
       <Filter />
+
       <div className={styles.grid}>
         {movies.map((movie) => (
           <Link

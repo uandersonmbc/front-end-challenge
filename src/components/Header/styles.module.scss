@@ -19,21 +19,15 @@
     flex-direction: column;
   }
 
+  span {
+    font-size: 25px;
+    font-weight: bold;
+  }
+
   .navbar {
     display: flex;
     justify-content: flex-end;
 
     height: 100%;
-
-    ul {
-      display: flex;
-      align-items: center;
-
-      gap: 10px;
-
-      li {
-        list-style: none;
-      }
-    }
   }
 }

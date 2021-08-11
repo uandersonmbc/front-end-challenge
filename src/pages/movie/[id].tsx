@@ -15,6 +15,7 @@ export default function Movie({
   movie,
   cdn,
   keywords,
+  language,
 }: MovieProps): JSX.Element {
   const [videos, setVideos] = useState<Array<Video>>([]);
   const [selectedVideo, setSelectedVideo] = useState<Video>();
@@ -35,7 +36,7 @@ export default function Movie({
       const { data } = await axios.get("/api/details", {
         params: {
           id: movie.id,
-          // laguage: movie.original_language,
+          language: language,
         },
       });
       setCast(data.credits.cast);
@@ -189,6 +190,7 @@ export const getStaticProps: GetStaticProps = async ({
 }: GetStaticPropsContext) => {
   const param = params?.id?.toString();
   const [id, language = ""] = param?.split("=") || ["", ""];
+  console.log(id, language);
   if (id) {
     try {
       const movie = await getDetailsMovie(id, language);
