@@ -188,7 +188,7 @@ export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext) => {
   const param = params?.id?.toString();
-  const [id, language] = param ? param?.split("=") : [undefined, undefined];
+  const [id, language = ""] = param?.split("=") || ["", ""];
   if (id) {
     try {
       const movie = await getDetailsMovie(id, language);
@@ -198,6 +198,7 @@ export const getStaticProps: GetStaticProps = async ({
           movie: movie.data,
           keywords: keywords.data.keywords,
           cdn: process.env.NEXTJS_CDN,
+          language: language,
         },
         revalidate: 3600,
       };

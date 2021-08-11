@@ -8,6 +8,7 @@ import { Card, Header } from "components";
 import axios from "services/api";
 
 import styles from "styles/home.module.scss";
+import Filter from "components/Filter/Filter";
 
 interface MovieState {
   id: number;
@@ -33,6 +34,7 @@ export default function Home({ cdn }: MovieProps): JSX.Element {
   return (
     <div className={styles.container}>
       <Header />
+      <Filter />
       <div className={styles.grid}>
         {movies.map((movie) => (
           <Link

@@ -52,6 +52,7 @@ export interface MovieProps {
   movie: Movie;
   keywords: Array<Keyword>;
   cdn: string;
+  language?: string;
 }
 
 export interface Video {

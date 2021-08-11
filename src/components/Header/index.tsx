@@ -9,19 +9,7 @@ export default function Header(): JSX.Element {
       <nav className={styles.navbar}>
         <ul>
           <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact">
-              <a>Contact</a>
-            </Link>
+            <a>Idioma</a>
           </li>
         </ul>
       </nav>

@@ -12,6 +12,7 @@ export default memo(function CardMovie({
   percent,
   image,
   cdn,
+  laguage = "en-US",
 }: CardMovieProps) {
   return (
     <div className={styles.container}>
@@ -37,7 +38,7 @@ export default memo(function CardMovie({
         <span className={styles.title}>{title}</span>
         <br />
         <span className={styles.releaseDate}>
-          Lançamento: {formatDates(new Date(releaseDate), "pt-BR")}
+          Lançamento: {formatDates(new Date(releaseDate), laguage)}
         </span>
       </div>
     </div>

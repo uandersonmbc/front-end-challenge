@@ -4,4 +4,5 @@ export interface CardMovieProps {
   image: string;
   releaseDate: string;
   cdn: string;
+  laguage?: string;
 }

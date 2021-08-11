@@ -1,7 +1,7 @@
 import axios from "./api";
 
 const path = "/movie";
-const mainLanguage = process.env.NEXTJS_LANGUAGE?.toString() || "pt-BR";
+const mainLanguage = process.env.NEXTJS_LANGUAGE?.toString() || "en-US";
 
 export function getPopularMovies(language: string = mainLanguage) {
   return axios.get(`${path}/popular`, {
