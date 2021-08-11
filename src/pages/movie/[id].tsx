@@ -31,25 +31,23 @@ export default function Movie({
     movie.original_language
   );
 
-  async function getDetails() {
-    try {
-      const { data } = await axios.get("/api/details", {
-        params: {
-          id: movie.id,
-          language: language,
-        },
-      });
-      setCast(data.credits.cast);
-      setVideos(data.videos);
-      setRecommendations(data.recommendations);
-    } catch (error) {}
-  }
-
-  function onVideoClick(video: Video) {
-    setSelectedVideo(video);
-  }
-
   useEffect(() => {
+    async function getDetails() {
+      try {
+        const { data } = await axios.get("/api/details", {
+          params: {
+            id: movie.id,
+            language: language,
+          },
+        });
+        setCast(data.credits.cast);
+        setVideos(data.videos);
+        setRecommendations(data.recommendations);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     getDetails();
   }, []);
 
@@ -151,7 +149,7 @@ export default function Movie({
               <YouTube videoId={selectedVideo?.key} opts={{ width: "100%" }} />
               <div className={styles.video}>
                 {videos.map((video) => (
-                  <div key={video.id} onClick={() => onVideoClick(video)}>
+                  <div key={video.id} onClick={() => setSelectedVideo(video)}>
                     {video.name}
                   </div>
                 ))}
