@@ -15,12 +15,12 @@ type Data = {
 export default async (req: NextApiRequest, res: NextApiResponse<Data | {}>) => {
   try {
     const query = req.query;
-    const language = query.language?.toString() || process.env.NEXTJS_LOCALE;
+    const locate = query.locate?.toString() || process.env.NEXTJS_LOCALE;
     const id = query.id?.toString() || "";
-    const videos = await getVideosMovie(id, language);
+    const videos = await getVideosMovie(id, locate);
     const images = await getImagesMovie(id);
-    const credits = await getCreditsMovie(id, language);
-    const recommendations = await getRecomendationsMovie(id, language);
+    const credits = await getCreditsMovie(id, locate);
+    const recommendations = await getRecomendationsMovie(id, locate);
 
     res.status(200).json({
       videos: videos.data.results,
