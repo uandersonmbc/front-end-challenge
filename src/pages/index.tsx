@@ -52,6 +52,7 @@ export default function Home({ cdn }: MovieProps): JSX.Element {
               pathname: `/movie/${movie.id}`,
             }}
             key={movie.id}
+            locale="en"
           >
             <a>
               <Card

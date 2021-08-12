@@ -185,9 +185,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({
   params,
+  locale,
 }: GetStaticPropsContext) => {
   const param = params?.id?.toString();
-  const [id, language = ""] = param?.split("=") || ["", ""];
+  const [id, language = locale] = param?.split("=") || ["", ""];
   console.log(id, language);
   if (id) {
     try {
