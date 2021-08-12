@@ -15,7 +15,7 @@ export default function Movie({
   movie,
   cdn,
   keywords,
-  language,
+  locale,
 }: MovieProps): JSX.Element {
   const [videos, setVideos] = useState<Array<Video>>([]);
   const [selectedVideo, setSelectedVideo] = useState<Video>();
@@ -26,10 +26,7 @@ export default function Movie({
   const genres = movie.genres.map((g) => g.name).join(", ");
   const year = movie.release_date.split("-")[0];
   const runtime = convertMinToHrMn(movie.runtime);
-  const releaseDate = formatDates(
-    new Date(movie.release_date),
-    movie.original_language
-  );
+  const releaseDate = formatDates(new Date(movie.release_date), locale);
 
   useEffect(() => {
     async function getDetails() {
@@ -37,7 +34,7 @@ export default function Movie({
         const { data } = await axios.get("/api/details", {
           params: {
             id: movie.id,
-            language: language,
+            language: locale,
           },
         });
         setCast(data.credits.cast);
@@ -188,18 +185,18 @@ export const getStaticProps: GetStaticProps = async ({
   locale,
 }: GetStaticPropsContext) => {
   const param = params?.id?.toString();
-  const [id, language = locale] = param?.split("=") || ["", ""];
-  console.log(id, language);
+  const [id] = param?.split("=") || [];
+
   if (id) {
     try {
-      const movie = await getDetailsMovie(id, language);
-      const keywords = await getKeywordsMovie(id, language);
+      const movie = await getDetailsMovie(id, locale);
+      const keywords = await getKeywordsMovie(id, locale);
       return {
         props: {
           movie: movie.data,
           keywords: keywords.data.keywords,
           cdn: process.env.NEXTJS_CDN,
-          language: language,
+          language: locale,
         },
         revalidate: 3600,
       };

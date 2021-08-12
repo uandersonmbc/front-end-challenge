@@ -21,6 +21,7 @@ interface MovieState {
 
 interface MovieProps {
   cdn: string;
+  locale: string;
 }
 
 export default function Home({ cdn }: MovieProps): JSX.Element {
@@ -52,7 +53,7 @@ export default function Home({ cdn }: MovieProps): JSX.Element {
               pathname: `/movie/${movie.id}`,
             }}
             key={movie.id}
-            locale="en"
+            // locale="pt-BR"
           >
             <a>
               <Card
@@ -66,14 +67,18 @@ export default function Home({ cdn }: MovieProps): JSX.Element {
           </Link>
         ))}
       </div>
+      <div>
+        <button>Carregar mais</button>
+      </div>
     </div>
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
       cdn: process.env.NEXTJS_CDN,
+      locale,
     },
   };
 };
