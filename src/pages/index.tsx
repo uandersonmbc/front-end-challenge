@@ -24,7 +24,7 @@ interface MovieProps {
   locale: string;
 }
 
-export default function Home({ cdn }: MovieProps): JSX.Element {
+export default function Home({ cdn, locale }: MovieProps): JSX.Element {
   const [movies, setMovies] = useState<Array<MovieState>>([]);
 
   async function fetchMovies() {
@@ -62,6 +62,7 @@ export default function Home({ cdn }: MovieProps): JSX.Element {
                 percent={movie.vote_average}
                 releaseDate={movie.release_date}
                 cdn={cdn}
+                locale={locale}
               />
             </a>
           </Link>
