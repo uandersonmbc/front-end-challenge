@@ -15,7 +15,7 @@ type Data = {
 export default async (req: NextApiRequest, res: NextApiResponse<Data | {}>) => {
   try {
     const query = req.query;
-    const language = query.language?.toString() || process.env.NEXTJS_LANGUAGE;
+    const language = query.language?.toString() || process.env.NEXTJS_LOCALE;
     const id = query.id?.toString() || "";
     const videos = await getVideosMovie(id, language);
     const images = await getImagesMovie(id);

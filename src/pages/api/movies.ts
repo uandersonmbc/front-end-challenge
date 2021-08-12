@@ -8,8 +8,8 @@ type Data = {
 export default async (req: NextApiRequest, res: NextApiResponse<Data | {}>) => {
   try {
     const query = req.query;
-    const language = query.language?.toString() || process.env.NEXTJS_LANGUAGE;
-    const { data } = await getPopularMovies(language);
+    const locale = query.locale?.toString() || process.env.NEXTJS_LOCALE;
+    const { data } = await getPopularMovies(locale);
 
     res.status(200).json(data);
   } catch (error) {

@@ -28,7 +28,11 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
   const [movies, setMovies] = useState<Array<MovieState>>([]);
 
   async function fetchMovies() {
-    const { data } = await axios.get(`/api/movies`);
+    const { data } = await axios.get(`/api/movies`, {
+      params: {
+        locale,
+      },
+    });
     setMovies(data.results);
   }
 
