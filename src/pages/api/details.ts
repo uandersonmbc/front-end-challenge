@@ -15,7 +15,8 @@ type Data = {
 export default async (req: NextApiRequest, res: NextApiResponse<Data | {}>) => {
   try {
     const query = req.query;
-    const locate = query.locate?.toString() || process.env.NEXTJS_LOCALE;
+    const locate = query.locale?.toString() || process.env.NEXTJS_LOCALE;
+
     const id = query.id?.toString() || "";
     const videos = await getVideosMovie(id, locate);
     const images = await getImagesMovie(id);

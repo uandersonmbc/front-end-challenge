@@ -34,7 +34,7 @@ export default function Movie({
         const { data } = await axios.get("/api/details", {
           params: {
             id: movie.id,
-            language: locale,
+            locale: locale,
           },
         });
         setCast(data.credits.cast);
@@ -196,7 +196,7 @@ export const getStaticProps: GetStaticProps = async ({
           movie: movie.data,
           keywords: keywords.data.keywords,
           cdn: process.env.NEXTJS_CDN,
-          language: locale,
+          locale: locale,
         },
         revalidate: 3600,
       };

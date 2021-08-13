@@ -3,18 +3,27 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-}
-
-.grid {
-  display: grid;
   justify-content: center;
 
-  width: 100%;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, 220px);
-  @include breakpoints.media-sm {
-    grid-template-columns: repeat(auto-fit, 100%);
-    grid-template-rows: repeat(auto-fit, auto);
+  main {
+    width: 1300px;
+    @include breakpoints.media-sm {
+      width: 100%;
+    }
   }
-  padding: 20px;
+
+  .grid {
+    display: grid;
+    justify-content: center;
+
+    width: 100%;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, 220px);
+    @include breakpoints.media-sm {
+      grid-template-columns: repeat(auto-fit, 100%);
+      grid-template-rows: repeat(auto-fit, auto);
+    }
+    padding: 20px;
+  }
 }
+
