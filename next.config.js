@@ -73,7 +73,7 @@ module.exports = {
       "zh-TW",
       "zu-ZA"
     ],
-    defaultLocale: process.env.NEXTJS_LOCALE,
+    defaultLocale: process.env.NEXTJS_LOCALE.toString() || "en-US",
     localeDetection: true,
   },
 };
