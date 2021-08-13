@@ -10,6 +10,7 @@ import { MovieProps, Video, Person, Movie as MovieState } from "types/movie";
 import styles from "styles/movie.module.scss";
 import { formatDates, convertMinToHrMn } from "utils/helpers";
 import { CardPerson, CardRecommendation } from "components";
+import Link from "next/link";
 
 export default function Movie({
   movie,
@@ -94,6 +95,9 @@ export default function Movie({
       <div className={styles.blur} />
       <div className={styles.container}>
         <div className={styles.content}>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
           <div className={styles.header}>
             <img
               src={cdn + "/w300" + movie.poster_path}
