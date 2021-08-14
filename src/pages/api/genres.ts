@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getGenres } from "services/genres";
 
 type Data = {
+  id: number;
   name: string;
 };
 
@@ -11,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data | {}>) => {
     const locale = query.locale?.toString() || process.env.NEXTJS_LOCALE;
     const { data } = await getGenres(locale);
 
-    res.status(200).json(data);
+    res.status(200).json(data.genres);
   } catch (error) {
     res.status(400).json({});
   }

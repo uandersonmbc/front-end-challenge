@@ -1,0 +1,73 @@
+@use './../../styles/breakpoints';
+
+.container {
+  width: 1024px;
+  padding: 20px;
+  @include breakpoints.media-md {
+    width: 100%;
+  }
+
+  @include breakpoints.media-sm {
+    width: 100%;
+  }
+
+  .headerTitle {
+    font-size: 2rem;
+
+  }
+  .content {
+    width: 100%;
+    .btnGenre {
+      background: none;
+      border: none;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      margin: 5px;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+    .btnGenre:hover {
+      background-color: #cecece;
+      border-color: #bbbbbb;
+    }
+    .btnCheck {
+      background-color: #20c574;
+      color: #fff;
+    }
+    .btnCheck:hover {
+      background-color: #1b9e5e;
+      border-color: #1b9e5e;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    .btn {
+      background: none;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      margin-left: 5px;
+    }
+
+    .btnClear {
+      @extend .btn;
+      background-color: #f2f2f2;
+      color: #032541;
+    }
+    .btnSearch {
+      @extend .btn;
+      background-color: #032541;
+      color: #fff;
+    }
+
+    .btnClear:hover {
+      background-color: #c5c5c5;
+    }
+
+    .btnSearch:hover {
+      background-color: #032541d1;
+    }
+  }
+}

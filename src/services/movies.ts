@@ -1,9 +1,19 @@
 import axios from "./api";
 
 const path = "/movie";
-const mainLanguage = process.env.NEXTJS_LOCALE?.toString() || "en-US";
+const defaultLocale = process.env.NEXTJS_LOCALE?.toString() || "en-US";
 
-export function getPopularMovies(language: string = mainLanguage) {
+export function getDiscovers(language: string = defaultLocale, params: any) {
+  return axios.get(`/discover/movie`, {
+    params: {
+      ...params,
+      api_key: process.env.NEXTJS_API_KEY,
+      locale: language,
+    },
+  });
+}
+
+export function getPopularMovies(language: string = defaultLocale) {
   return axios.get(`${path}/popular`, {
     params: {
       api_key: process.env.NEXTJS_API_KEY,
@@ -14,7 +24,7 @@ export function getPopularMovies(language: string = mainLanguage) {
 
 export function getDetailsMovie(
   id: string | string[] | undefined,
-  language: string = mainLanguage
+  language: string = defaultLocale
 ) {
   return axios.get(`${path}/${id}`, {
     params: {
@@ -26,7 +36,7 @@ export function getDetailsMovie(
 
 export function getKeywordsMovie(
   id: string | string[],
-  language: string = mainLanguage
+  language: string = defaultLocale
 ) {
   return axios.get(`${path}/${id}/keywords`, {
     params: {
@@ -36,21 +46,9 @@ export function getKeywordsMovie(
   });
 }
 
-export function getSimilarMovies(
-  id: string | string[],
-  language: string = mainLanguage
-) {
-  return axios.get(`${path}/${id}/similar`, {
-    params: {
-      api_key: process.env.NEXTJS_API_KEY,
-      language: language,
-    },
-  });
-}
-
 export function getRecomendationsMovie(
   id: string | string[],
-  language: string = mainLanguage
+  language: string = defaultLocale
 ) {
   return axios.get(`${path}/${id}/recommendations`, {
     params: {
@@ -62,7 +60,7 @@ export function getRecomendationsMovie(
 
 export function getCreditsMovie(
   id: string | string[],
-  language: string = mainLanguage
+  language: string = defaultLocale
 ) {
   return axios.get(`${path}/${id}/credits`, {
     params: {
@@ -82,7 +80,7 @@ export function getImagesMovie(id: string | string[]) {
 
 export function getVideosMovie(
   id: string | string[],
-  language: string = mainLanguage
+  language: string = defaultLocale
 ) {
   return axios.get(`${path}/${id}/videos`, {
     params: {

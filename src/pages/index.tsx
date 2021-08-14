@@ -28,10 +28,14 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
   const [movies, setMovies] = useState<Array<MovieState>>([]);
   const [page, setPage] = useState(1);
 
-  async function fetchMovies() {
+  async function fetchMovies(
+    genres: Array<string>,
+    page: number
+  ): Promise<any> {
     const { data } = await axios.get(`/api/movies`, {
       params: {
         locale,
+        genres: genres.join(","),
       },
     });
     setMovies(data.results);
@@ -41,9 +45,6 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
     // const storedPage = sessionStorage.getItem("page") || 1;
     // setPage(storedPage);
   }
-  useEffect(() => {
-    fetchMovies();
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -54,7 +55,7 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
       <Header />
 
       <main>
-        <Filter />
+        <Filter locale={locale} search={fetchMovies} />
         <div className={styles.grid}>
           {movies.map((movie) => (
             <Link

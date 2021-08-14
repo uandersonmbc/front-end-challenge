@@ -7,6 +7,9 @@
 
   main {
     width: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     @include breakpoints.media-sm {
       width: 100%;
     }
