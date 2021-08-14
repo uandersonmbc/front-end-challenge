@@ -17,11 +17,11 @@
 
   <img alt="License" src="https://img.shields.io/github/license/uandersonmbc/front-end-challenge?color=56BEB8">
 
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/uandersonmbc/front-end-challenge?color=56BEB8" /> -->
+  <img alt="Github issues" src="https://img.shields.io/github/issues/uandersonmbc/front-end-challenge?color=56BEB8" />
 
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/uandersonmbc/front-end-challenge?color=56BEB8" /> -->
+  <img alt="Github forks" src="https://img.shields.io/github/forks/uandersonmbc/front-end-challenge?color=56BEB8" />
 
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/uandersonmbc/front-end-challenge?color=56BEB8" /> -->
+  <img alt="Github stars" src="https://img.shields.io/github/stars/uandersonmbc/front-end-challenge?color=56BEB8" />
 </p>
 
 <!-- Status -->
@@ -50,18 +50,12 @@ Describe your project
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
 
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
-
-- [Expo](https://expo.io/)
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Requirements ##
@@ -78,10 +72,10 @@ $ git clone https://github.com/uandersonmbc/front-end-challenge
 $ cd front-end-challenge
 
 # Install dependencies
-$ yarn
+$ yarn or npm install
 
 # Run the project
-$ yarn start
+$ yarn dev
 
 # The server will initialize in the <http://localhost:3000>
 ```

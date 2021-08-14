@@ -113,7 +113,7 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
             className={styles.btn}
             onClick={() => onPageChange("next")}
           >
-            Proxima
+            Próximo
           </button>
         </div>
       </main>
