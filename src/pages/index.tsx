@@ -28,10 +28,7 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
   const [movies, setMovies] = useState<Array<MovieState>>([]);
   const [page, setPage] = useState(1);
 
-  async function fetchMovies(
-    genres: Array<string>,
-    page: number
-  ): Promise<any> {
+  async function fetchMovies(genres: Array<number>, page: number) {
     const { data } = await axios.get(`/api/movies`, {
       params: {
         locale,

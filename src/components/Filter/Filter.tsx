@@ -10,7 +10,7 @@ export default function Filter({
   search,
 }: {
   locale: string;
-  search: (genres: Array<number>, page: number) => Promise<any>;
+  search: (genres: Array<number>, page: number) => void;
 }) {
   const [genres, setGenres] = useState<Array<Genre>>([]);
   const [selected, setSelected] = useState<Array<number>>([]);
