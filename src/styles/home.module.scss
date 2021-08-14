@@ -28,5 +28,28 @@
     }
     padding: 20px;
   }
+
+  .pages {
+    margin-bottom: 100px;
+    .btn {
+      background: none;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      margin-left: 5px;
+      background-color: #032541;
+      color: #fff;
+    }
+
+    .btn:hover {
+      background-color: #032541d1;
+      color: #fff;
+    }
+
+    .page {
+      padding: 20px;
+      font-weight: bold;
+    }
+  }
 }
 

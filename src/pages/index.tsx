@@ -26,21 +26,44 @@ interface MovieProps {
 
 export default function Home({ cdn, locale }: MovieProps): JSX.Element {
   const [movies, setMovies] = useState<Array<MovieState>>([]);
-  const [page, setPage] = useState(1);
+  const [selectedPage, setSelectedPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [selectedGenres, setSelectedGenres] = useState<Array<number>>([]);
+  const [loading, setLoading] = useState(false);
 
-  async function fetchMovies(genres: Array<number>, page: number) {
-    const { data } = await axios.get(`/api/movies`, {
-      params: {
-        locale,
-        genres: genres.join(","),
-      },
-    });
-    setMovies(data.results);
+  async function fetchMovies(
+    genres: Array<number>,
+    page: number,
+    filter = false
+  ) {
+    try {
+      setLoading(true);
+      if (filter) setSelectedPage(page);
+      setSelectedGenres(genres);
+      const { data } = await axios.get(`/api/movies`, {
+        params: {
+          locale,
+          genres: genres.join(","),
+          page,
+        },
+      });
+      setMovies(data.results);
+      setTotalPages(data.total_pages);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  async function getPage() {
-    // const storedPage = sessionStorage.getItem("page") || 1;
-    // setPage(storedPage);
+  function onPageChange(action: string) {
+    if (selectedPage > 1 && action === "prev") {
+      fetchMovies(selectedGenres, selectedPage - 1);
+      setSelectedPage(selectedPage - 1);
+    } else if (selectedPage < totalPages && action === "next") {
+      fetchMovies(selectedGenres, selectedPage + 1);
+      setSelectedPage(selectedPage + 1);
+    }
   }
 
   return (
@@ -74,8 +97,24 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
             </Link>
           ))}
         </div>
-        <div>
-          <button>Carregar mais</button>
+        <div className={styles.pages}>
+          <button
+            disabled={loading}
+            className={styles.btn}
+            onClick={() => onPageChange("prev")}
+          >
+            Anterior
+          </button>
+          <span className={styles.page}>
+            {selectedPage} / {totalPages}
+          </span>
+          <button
+            disabled={loading}
+            className={styles.btn}
+            onClick={() => onPageChange("next")}
+          >
+            Proxima
+          </button>
         </div>
       </main>
     </div>

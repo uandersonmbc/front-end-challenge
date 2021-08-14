@@ -13,11 +13,15 @@ export function getDiscovers(language: string = defaultLocale, params: any) {
   });
 }
 
-export function getPopularMovies(language: string = defaultLocale) {
+export function getPopularMovies(
+  language: string = defaultLocale,
+  page: string | string[] | undefined
+) {
   return axios.get(`${path}/popular`, {
     params: {
       api_key: process.env.NEXTJS_API_KEY,
       language: language,
+      page: page,
     },
   });
 }

@@ -1,26 +1,11 @@
-class Storage {
-  key: string;
-
-  constructor(key: string) {
-    this.key = key;
-  }
-
-  async get() {
-    return sessionStorage.getItem(this.key);
-  }
-
-  set(value: any) {
-    const stringValue = JSON.stringify(value);
-    return sessionStorage.setItem(this.key, stringValue);
-  }
-
-  clear() {
-    return sessionStorage.removeItem(this.key);
-  }
+function storage(key: string) {
+  return {
+    get: () => JSON.parse(sessionStorage.getItem(key) ?? "[]"),
+    set: <T>(value: T) => sessionStorage.setItem(key, JSON.stringify(value)),
+    clear: () => sessionStorage.removeItem(key),
+  };
 }
 
-export const storedGenres = new Storage("storedGenres");
+export const storedGenres = storage("storedGenres");
 
-export const storedPage = new Storage("storedPage");
-
-export default Storage;
+export default storage;

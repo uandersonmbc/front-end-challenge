@@ -10,14 +10,13 @@ export default function Filter({
   search,
 }: {
   locale: string;
-  search: (genres: Array<number>, page: number) => void;
+  search: (genres: Array<number>, page: number, filter: boolean) => void;
 }) {
   const [genres, setGenres] = useState<Array<Genre>>([]);
   const [selected, setSelected] = useState<Array<number>>([]);
 
   async function fetchGenres() {
-    const selectedGenres = await storedGenres.get();
-    const page = await storedGenres.get();
+    const selectedGenres = storedGenres.get();
     const { data } = await axios.get("/api/genres", {
       params: {
         locale,
@@ -25,11 +24,11 @@ export default function Filter({
     });
     setGenres(data);
 
-    if (selectedGenres) {
-      setSelected(JSON.parse(selectedGenres));
-      search(JSON.parse(selectedGenres), 1);
+    if (selectedGenres.length) {
+      setSelected(selectedGenres);
+      search(selectedGenres, 1, true);
     } else {
-      search([], 1);
+      search([], 1, true);
     }
   }
 
@@ -39,7 +38,7 @@ export default function Filter({
   }
 
   function onSearch() {
-    search(selected, 1);
+    search(selected, 1, true);
   }
 
   function onSelect(genre: number) {
