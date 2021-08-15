@@ -1,6 +1,5 @@
 <div align="center" id="top"> 
   <img src="https://user-images.githubusercontent.com/26174031/129483324-f2d1d5a9-dbb2-4197-9c40-1fe53617c3d7.png" alt="Front End Challenge" />
-
   &#xa0;
 
   <a href="https://front-end-challenge-theta.vercel.app/pt-BR">Demo</a>
