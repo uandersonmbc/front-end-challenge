@@ -59,7 +59,7 @@ export default function Filter({
 
   return (
     <div className={styles.container}>
-      <div className={styles.headerTitle}>Filter</div>
+      <div className={styles.headerTitle}>Filtro</div>
 
       <div className={styles.content}>
         {genres.map((genre) => (

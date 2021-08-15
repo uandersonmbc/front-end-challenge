@@ -1,9 +1,9 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Front End Challenge" />
+  <img src="https://user-images.githubusercontent.com/26174031/129483324-f2d1d5a9-dbb2-4197-9c40-1fe53617c3d7.png" alt="Front End Challenge" />
 
   &#xa0;
 
-  <!-- <a href="https://frontendchallenge.netlify.app">Demo</a> -->
+  <a href="https://front-end-challenge-theta.vercel.app/pt-BR">Demo</a>
 </div>
 
 <h1 align="center">Front End Challenge</h1>
@@ -24,13 +24,6 @@
   <img alt="Github stars" src="https://img.shields.io/github/stars/uandersonmbc/front-end-challenge?color=56BEB8" />
 </p>
 
-<!-- Status -->
-
-<!-- <h4 align="center"> 
-	🚧  Front End Challenge 🚀 Under construction...  🚧
-</h4> 
-
-<hr> -->
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
@@ -49,20 +42,33 @@
 Describe your project
 
 ## :sparkles: Features ##
+:heavy_check_mark: O usuário deve ter acesso a uma listagem dos filmes mais populares do dia
 
+:heavy_check_mark: O usuário deve conseguir paginar a lista para encontrar novos filmes
+
+:heavy_check_mark: O usuário deve conseguir filtrar os filmes listados por gênero, com a possibilidade de usar mais de um gênero
+
+:heavy_check_mark: Ao realizar filtros, o mesmo deve ser persistido pela paginação
+
+:heavy_check_mark: O usuário deve conseguir remover filtros e a listagem deve ser atualizada de acordo com o filtro removido
+
+:heavy_check_mark: O usário deve ter acesso a uma outra página com detalhes sobre o filme, ao clicar em um item na listagem
+
+:heavy_check_mark: O usuário deve conseguir voltar para a página de listagem de filmes com os filtros ainda ativos
 
 ## :rocket: Technologies ##
 
-The following tools were used in this project:
+As seguintes ferramentas foram utilizadas neste projeto:
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
+- [Next](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+Antes de começar :checkered_flag:, você precisa ter o [Git](https://git-scm.com) e [Node](https://nodejs.org/en/) instalados.
 
-## :checkered_flag: Starting ##
+## :checkered_flag: Iniciando ##
 
 ```bash
 # Clone this project
@@ -72,10 +78,30 @@ $ git clone https://github.com/uandersonmbc/front-end-challenge
 $ cd front-end-challenge
 
 # Install dependencies
-$ yarn or npm install
+$ yarn 
 
+  or 
+
+$ npm install
+```
+
+## Configuração do .env
+```
+NEXTJS_API=https://api.themoviedb.org/3
+NEXTJS_API_KEY=obtenha no site da themoviedb
+NEXTJS_CDN=https://www.themoviedb.org/t/p
+NEXTJS_LOCALE=en-US
+
+```
+
+## Executar o projeto
+```bash
 # Run the project
-$ yarn dev
+$ yarn dev 
+
+  or
+
+$ npm run dev
 
 # The server will initialize in the <http://localhost:3000>
 ```
@@ -89,4 +115,4 @@ Made with :heart: by <a href="https://github.com/uandersonmbc" target="_blank">U
 
 &#xa0;
 
-<a href="#top">Back to top</a>
+<a href="#top">Voltar para o topo</a>
