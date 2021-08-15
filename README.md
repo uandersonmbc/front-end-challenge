@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Front End Challenge" />
+  ![image](https://user-images.githubusercontent.com/26174031/129483324-f2d1d5a9-dbb2-4197-9c40-1fe53617c3d7.png)
 
   &#xa0;
 
