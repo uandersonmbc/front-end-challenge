@@ -38,7 +38,8 @@
 
 ## :dart: About ##
 
-Describe your project
+O projeto obtém os dados da api do Themoviedb e faz uma listagem dos filmes mais populares. Existe um filtro de gêneros para você escolher de quais gêneros você quer ver os filmes. Também tem uma página de detalhes dos filmes, onde mostra o elenco, trailer e filmes recomendados. Nesse mesmo projeto dependendo de qual seja o idioma do seu navegador ele vai obter os dados com o idioma que seu navegador tá.
+
 
 ## :sparkles: Features ##
 :heavy_check_mark: O usuário deve ter acesso a uma listagem dos filmes mais populares do dia
@@ -103,6 +104,17 @@ $ yarn dev
 $ npm run dev
 
 # The server will initialize in the <http://localhost:3000>
+```
+
+## Executar os testes
+Não foram finalizados, mas configurei o ambiente de teste.
+```bash
+$ yarn test 
+
+  or
+
+$ npm run test
+
 ```
 
 ## :memo: License ##
