@@ -17,11 +17,13 @@ export default function Filter({
 
   async function fetchGenres() {
     const selectedGenres = storedGenres.get();
+
     const { data } = await axios.get("/api/genres", {
       params: {
         locale,
       },
     });
+
     setGenres(data);
 
     if (selectedGenres.length) {
@@ -59,7 +61,7 @@ export default function Filter({
 
   return (
     <div className={styles.container}>
-      <div className={styles.headerTitle}>Filtro</div>
+      <div className={styles.headerTitle}>Filter</div>
 
       <div className={styles.content}>
         {genres.map((genre) => (
@@ -76,10 +78,10 @@ export default function Filter({
       </div>
       <div className={styles.footer}>
         <button className={styles.btnClear} onClick={() => onClear()}>
-          Limpar
+          Clear
         </button>
         <button className={styles.btnSearch} onClick={() => onSearch()}>
-          Pesquisar
+          Search
         </button>
       </div>
     </div>
