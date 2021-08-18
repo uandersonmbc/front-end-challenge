@@ -129,7 +129,7 @@ describe("Filter", () => {
     expect(search).toHaveBeenCalledWith([28, 12], 1, true);
   });
 
-  it("", async () => {
+  it("Test", async () => {
     const search = jest.fn();
 
     const genres = [
