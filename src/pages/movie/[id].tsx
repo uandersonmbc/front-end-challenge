@@ -95,9 +95,7 @@ export default function Movie({
       <div className={styles.blur} />
       <div className={styles.container}>
         <div className={styles.content}>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
+          <Link href="/">Home</Link>
           <div className={styles.header}>
             <img
               src={cdn + "/w300" + movie.poster_path}

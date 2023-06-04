@@ -84,16 +84,14 @@ export default function Home({ cdn, locale }: MovieProps): JSX.Element {
               }}
               key={movie.id}
             >
-              <a>
-                <Card
-                  title={movie.title}
-                  image={movie.poster_path}
-                  percent={movie.vote_average}
-                  releaseDate={movie.release_date}
-                  cdn={cdn}
-                  locale={locale}
-                />
-              </a>
+              <Card
+                title={movie.title}
+                image={movie.poster_path}
+                percent={movie.vote_average}
+                releaseDate={movie.release_date}
+                cdn={cdn}
+                locale={locale}
+              />
             </Link>
           ))}
         </div>
