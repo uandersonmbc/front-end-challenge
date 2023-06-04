@@ -43,11 +43,17 @@ The project retrieves data from the Themoviedb API and creates a listing of the 
 
 ## :sparkles: Features ##
 :heavy_check_mark: The user should have access to a listing of the most popular movies of the day.
+
 :heavy_check_mark: The user should be able to paginate through the list to discover new movies.
+
 :heavy_check_mark: The user should be able to filter the listed movies by genre, with the option to select multiple genres.
+
 :heavy_check_mark: When applying filters, the filtering criteria should be preserved during pagination.
+
 :heavy_check_mark: The user should be able to remove filters, and the listing should be updated accordingly.
+
 :heavy_check_mark: The user should have access to a separate page with detailed information about a movie when clicking on an item in the listing.
+
 :heavy_check_mark: The user should be able to return to the movie listing page with the filters still active.
 
 ## :rocket: Technologies ##
