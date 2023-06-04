@@ -38,27 +38,21 @@
 
 ## :dart: About ##
 
-O projeto obtém os dados da api do Themoviedb e faz uma listagem dos filmes mais populares. Existe um filtro de gêneros para você escolher de quais gêneros você quer ver os filmes. Também tem uma página de detalhes dos filmes, onde mostra o elenco, trailer e filmes recomendados. Nesse mesmo projeto dependendo de qual seja o idioma do seu navegador ele vai obter os dados com o idioma que seu navegador tá.
+The project retrieves data from the Themoviedb API and creates a listing of the most popular movies. It includes a genre filter that allows you to choose which genres of movies you want to see. There is also a movie details page that displays the cast, trailer, and recommended movies. In this same project, depending on the language of your browser, it will retrieve the data in the language of your browser.
 
 
 ## :sparkles: Features ##
-:heavy_check_mark: O usuário deve ter acesso a uma listagem dos filmes mais populares do dia
-
-:heavy_check_mark: O usuário deve conseguir paginar a lista para encontrar novos filmes
-
-:heavy_check_mark: O usuário deve conseguir filtrar os filmes listados por gênero, com a possibilidade de usar mais de um gênero
-
-:heavy_check_mark: Ao realizar filtros, o mesmo deve ser persistido pela paginação
-
-:heavy_check_mark: O usuário deve conseguir remover filtros e a listagem deve ser atualizada de acordo com o filtro removido
-
-:heavy_check_mark: O usário deve ter acesso a uma outra página com detalhes sobre o filme, ao clicar em um item na listagem
-
-:heavy_check_mark: O usuário deve conseguir voltar para a página de listagem de filmes com os filtros ainda ativos
+:heavy_check_mark: The user should have access to a listing of the most popular movies of the day.
+:heavy_check_mark: The user should be able to paginate through the list to discover new movies.
+:heavy_check_mark: The user should be able to filter the listed movies by genre, with the option to select multiple genres.
+:heavy_check_mark: When applying filters, the filtering criteria should be preserved during pagination.
+:heavy_check_mark: The user should be able to remove filters, and the listing should be updated accordingly.
+:heavy_check_mark: The user should have access to a separate page with detailed information about a movie when clicking on an item in the listing.
+:heavy_check_mark: The user should be able to return to the movie listing page with the filters still active.
 
 ## :rocket: Technologies ##
 
-As seguintes ferramentas foram utilizadas neste projeto:
+The following tools were used in this project:
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
 - [Next](https://nextjs.org/)
@@ -66,7 +60,7 @@ As seguintes ferramentas foram utilizadas neste projeto:
 
 ## :white_check_mark: Requirements ##
 
-Antes de começar :checkered_flag:, você precisa ter o [Git](https://git-scm.com) e [Node](https://nodejs.org/en/) instalados.
+Before you begin :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
 ## :checkered_flag: Iniciando ##
 
@@ -85,7 +79,7 @@ $ yarn
 $ npm install
 ```
 
-## Configuração do .env
+## Configuration of .env
 ```
 NEXTJS_API=https://api.themoviedb.org/3
 NEXTJS_API_KEY=obtenha no site da themoviedb
@@ -94,7 +88,7 @@ NEXTJS_LOCALE=en-US
 
 ```
 
-## Executar o projeto
+## Run the project.
 ```bash
 # Run the project
 $ yarn dev 
@@ -107,7 +101,6 @@ $ npm run dev
 ```
 
 ## Executar os testes
-Não foram finalizados, mas configurei o ambiente de teste.
 ```bash
 $ yarn test 
 
